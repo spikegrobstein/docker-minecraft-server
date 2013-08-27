@@ -13,11 +13,11 @@ RUN gem install mcwrapper --pre
 RUN useradd -s /bin/bash -m -c "Minecraft Server" minecraft
 USER minecraft
 
-ADD mcwrapper.conf /home/minecraft/mcwrapper.conf
+RUN mkdir /home/minecraft/mcwrapper
+RUN chown minecraft:minecraft /home/minecraft/mcwrapper
+
 ADD minecraft_server.jar /home/minecraft/minecraft_server.jar
 
 EXPOSE 25565
 
 WORKDIR /home/minecraft
-ENTRYPOINT ["/usr/local/bin/mcwrapper"]
-CMD ["help"]
